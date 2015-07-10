@@ -4,10 +4,10 @@ var HelloAngular = function() {
 };
 
 HelloAngular.annotations = [
-    new angular.ComponentAnnotation({
+    new angular.Component({
         selector: 'hello'
     }),
-    new angular.ViewAnnotation({
+    new angular.View({
         template:
         '<p>{{message}}</p>' +
         '<p> Messages : </p>' +
@@ -20,12 +20,18 @@ HelloAngular.annotations = [
     })
 ];
 
-var UserForm = function() {
+HelloAngular.prototype.getUserName = function() {
+    console.log (' Test User NAme');
+};
+
+var UserForm = function(UserService) {
+    var initUserInfo = UserService.getInitialInfo();
+    
     this.user = {};
-    this.user.first_name = "";
-    this.user.last_name = "";
-    this.user.phone = "";
-    this.user.email_address = "";
+    this.user.first_name = initUserInfo.first_name;
+    this.user.last_name = initUserInfo.last_name;
+    this.user.phone = initUserInfo.phone;
+    this.user.email_address = initUserInfo.email_address;
 }
 
 UserForm.prototype.saveUserInfo = function() {
@@ -34,13 +40,16 @@ UserForm.prototype.saveUserInfo = function() {
 
 UserForm.annotations = [
   new angular.Component({
-    selector: 'userForm'
+    selector: 'userForm',
+    viewInjector: [UserService]
   }),
   new angular.View({
     templateUrl : 'userForm.html',
       directives: [angular.formDirectives]
   })
 ];
+
+UserForm.parameters=[[UserService]];
 
 document.addEventListener("DOMContentLoaded", function() {
     angular.bootstrap(HelloAngular);

@@ -1,17 +1,22 @@
 <h1>User Form</h1>
-<div><span>First Name:</span> 
-    <input type="text" [(ng-model)]="user.first_name"/>
+    <form>
+        <div class="col-xs-9">
+            <div class="form-group"><label>First Name:</label > 
+                <input class="form-control" type="text" [(ng-model)]="user.first_name"/>
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label> 
+                <input class="form-control" type="text" [(ng-model)]="user.last_name"/>
+            </div>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input class="form-control" type="text" [(ng-model)]="user.phone" />
+            </div>
+            <div class="form-group">
+                <label>Email Address:</label> 
+                <input class="form-control" type="text" [(ng-model)]="user.email_address" />
+            </div>
+            <button (click)="saveUserInfo()">Submit</button>
+        </form>
+        </div>
 </div>
-<div>
-    <span>Last Name:</span> 
-    <input type="text" [(ng-model)]="user.last_name"/>
-</div>
-<div>
-    <span>Phone Number:</span>
-    <input type="text" [(ng-model)]="user.phone" />
-</div>
-<div>
-    <span>Email Address:</span> 
-    <input type="text" [(ng-model)]="user.email_address" />
-</div>
-<button (click)="saveUserInfo()">Submit</button>
